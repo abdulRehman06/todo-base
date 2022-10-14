@@ -44,8 +44,8 @@ export function App() {
     <ChakraProvider theme={theme}>
       <Box maxWidth="8xl" margin="auto" p={5}>
         <TopBar />
-        <TodoAdd setTodo={setTodos} />
-        <TodoList todo={todo} deleteTodo={deleteTodos} />
+        <TodoAdd />
+        <TodoList />
       </Box>
     </ChakraProvider>
   );

@@ -1,21 +1,19 @@
 import * as React from "react";
 import { Button, Input, Grid } from "@chakra-ui/react";
+import useStore from "../store";
 
-interface ITodoAdd {
-  setTodo: (value: string) => void;
-}
-function TodoAdd({ setTodo }: ITodoAdd) {
-  const [todoText, setTodoText] = React.useState("");
+function TodoAdd() {
+  const { newTodoText, addTodo, addNewTodo } = useStore();
   return (
     <Grid pt={2} templateColumns="5fr 1fr" columnGap="3">
       <Input
-        value={todoText}
+        value={newTodoText}
         onChange={(e) => {
-          setTodoText(e.target.value);
+          addNewTodo(e.target.value);
         }}
         placeholder="New todo"
       />
-      <Button onClick={() => setTodo(todoText)}>Add Todo</Button>
+      <Button onClick={() => addTodo()}>Add I_Todo</Button>
     </Grid>
   );
 }

@@ -1,21 +1,22 @@
 import * as React from "react";
 import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react";
-import { ITodo } from "../App";
+import useStore, { I_Todo } from "../store";
 
-interface ITodoList {
-  todo: ITodo[];
-  deleteTodo: (id: number) => void;
-}
-function TodoList({ todo, deleteTodo }: ITodoList) {
+function TodoList() {
+  const { todos, removeTodo, updateTodo, toggleTodo } = useStore();
   return (
     <>
-      <Heading>Todo List</Heading>
+      <Heading>I_Todo List</Heading>
       <>
-        {todo.map((todo) => (
+        {todos.map((todo: I_Todo) => (
           <Flex pt={2} key={todo.id}>
-            <Checkbox />
-            <Input mx={2} value={todo.text} />
-            <Button onClick={() => deleteTodo(todo.id)}>Delete</Button>
+            <Checkbox checked={todo.done} onClick={() => toggleTodo(todo.id)} />
+            <Input
+              mx={2}
+              value={todo.text}
+              onChange={(ev) => updateTodo(todo.id, ev.target.value)}
+            />
+            <Button onClick={() => removeTodo(todo.id)}>Delete</Button>
           </Flex>
         ))}
       </>
