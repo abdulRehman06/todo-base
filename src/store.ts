@@ -8,13 +8,13 @@ export interface Todo {
 export const updateTodo = (todos: Todo[], id: number, text: string): Todo[] =>
   todos.map((todo) => ({
     ...todo,
-    text: todo.id === id ? text : todo.text,
+    text: todo.id === id ? text : todo.text
   }));
 
 export const toggleTodo = (todos: Todo[], id: number): Todo[] =>
   todos.map((todo) => ({
     ...todo,
-    done: todo.id === id ? !todo.done : todo.done,
+    done: todo.id === id ? !todo.done : todo.done
   }));
 
 export const removeTodo = (todos: Todo[], id: number): Todo[] =>
@@ -25,6 +25,6 @@ export const addTodo = (todos: Todo[], text: string): Todo[] => [
   {
     id: Math.max(0, Math.max(...todos.map(({ id }) => id))) + 1,
     text,
-    done: false,
-  },
+    done: false
+  }
 ];

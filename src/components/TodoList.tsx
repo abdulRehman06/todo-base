@@ -1,25 +1,24 @@
 import * as React from "react";
 import { Button, Input, Flex, Checkbox, Heading } from "@chakra-ui/react";
+import { ITodo } from "../App";
 
-function TodoListItems() {
-  return (
-    <>
-      {[].map((todo: { id: number; text: string }) => (
-        <Flex pt={2} key={todo.id}>
-          <Checkbox />
-          <Input mx={2} value={todo.text} />
-          <Button>Delete</Button>
-        </Flex>
-      ))}
-    </>
-  );
+interface ITodoList {
+  todo: ITodo[];
+  deleteTodo: (id: number) => void;
 }
-
-function TodoList() {
+function TodoList({ todo, deleteTodo }: ITodoList) {
   return (
     <>
       <Heading>Todo List</Heading>
-      <TodoListItems />
+      <>
+        {todo.map((todo) => (
+          <Flex pt={2} key={todo.id}>
+            <Checkbox />
+            <Input mx={2} value={todo.text} />
+            <Button onClick={() => deleteTodo(todo.id)}>Delete</Button>
+          </Flex>
+        ))}
+      </>
     </>
   );
 }
